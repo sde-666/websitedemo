@@ -1,0 +1,528 @@
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Shradhha Tiwari, MCA graduate from GNIOT.">
+  <title>Shradhha Tiwari | MCA Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --surface: rgba(255,255,255,.82);
+      --text: #16181d;
+      --muted: #686d78;
+      --line: #e7e8ee;
+      --accent: #5b4bdb;
+      --accent-soft: #eeebff;
+      --dark: #111218;
+      --shadow: 0 20px 60px rgba(25, 27, 40, .09);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 85% 8%, #e9e4ff 0, transparent 28%),
+        radial-gradient(circle at 5% 35%, #e9f5ff 0, transparent 24%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(247,248,252,.72);
+      border-bottom: 1px solid rgba(231,232,238,.7);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -.04em;
+      font-size: 1.15rem;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      place-items: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6.4rem);
+      line-height: .94;
+      letter-spacing: -.075em;
+      max-width: 850px;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 27px 0 31px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 19px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: .2s ease;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .btn.primary {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 9px 25px rgba(0,0,0,.08); }
+
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(15px);
+    }
+
+    .avatar {
+      width: 155px;
+      height: 155px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #dcd6ff, #f1f3f8);
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      border: 8px solid white;
+      box-shadow: 0 12px 40px rgba(50,40,130,.12);
+    }
+
+    .profile-card h2 { font-size: 1.35rem; }
+    .profile-card p { color: var(--muted); margin-top: 5px; }
+
+    section { padding: 100px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 35px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+
+    .section-head p { color: var(--muted); max-width: 430px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .stat {
+      padding: 23px;
+      border-radius: 18px;
+      background: var(--accent-soft);
+    }
+
+    .stat strong { display: block; font-size: 1.8rem; }
+    .stat small { color: var(--muted); }
+
+    .about-text p { color: var(--muted); margin-bottom: 17px; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fafafa;
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 25px;
+      transition: .25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-number {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: .82rem;
+    }
+
+    .project h3 {
+      font-size: 1.35rem;
+      letter-spacing: -.03em;
+      margin: 10px 0;
+    }
+
+    .project p { color: var(--muted); font-size: .92rem; }
+
+    .project a {
+      margin-top: 22px;
+      font-weight: 700;
+      font-size: .88rem;
+    }
+
+    .education {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid var(--line);
+    }
+
+    .education-item { margin-bottom: 30px; position: relative; }
+    .education-item:last-child { margin-bottom: 0; }
+
+    .education-item::before {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      left: -35px;
+      top: 8px;
+      box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+
+    .education-item small { color: var(--accent); font-weight: 800; }
+    .education-item h3 { margin: 5px 0; font-size: 1.2rem; }
+    .education-item p { color: var(--muted); }
+
+    .contact {
+      background: var(--dark);
+      color: white;
+      border-radius: 30px;
+      padding: 65px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .contact h2 {
+      font-size: clamp(2.3rem, 5vw, 4.4rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+      max-width: 700px;
+    }
+
+    .contact p { color: #a9abb4; margin-top: 16px; }
+
+    .contact .btn { background: white; color: var(--dark); border: 0; }
+
+    footer {
+      padding: 35px 0;
+      color: var(--muted);
+      font-size: .85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .hero-grid, .about-grid, .projects, .contact {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 60px; }
+      .profile-card { max-width: 430px; margin: auto; }
+      section { padding: 70px 0; }
+      .contact { padding: 40px 28px; }
+      footer { flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: min(100% - 28px, 1120px); }
+      h1 { font-size: 3.4rem; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#home">S<span>T</span>.</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="home">
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> MCA Graduate · GNIOT</div>
+          <h1>Hi, I'm <span>Shradhha</span> Tiwari.</h1>
+          <p>
+            A motivated MCA graduate passionate about technology, software,
+            problem-solving and building clean, useful digital experiences.
+          </p>
+          <div class="buttons">
+            <a class="btn primary" href="#projects">View My Work ↗</a>
+            <a class="btn" href="#contact">Let's Connect</a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="avatar">ST</div>
+          <h2>Shradhha Tiwari</h2>
+          <p>Master of Computer Applications</p>
+          <p>GNIOT · Greater Noida</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About me.</h2>
+          <p>Focused on learning, creating and turning ideas into practical technology solutions.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card stat-grid">
+            <div class="stat"><strong>MCA</strong><small>Postgraduate Degree</small></div>
+            <div class="stat"><strong>GNIOT</strong><small>Greater Noida</small></div>
+            <div class="stat"><strong>Tech</strong><small>Software & Development</small></div>
+            <div class="stat"><strong>∞</strong><small>Curiosity to Learn</small></div>
+          </div>
+
+          <div class="card about-text">
+            <p>
+              I'm Shradhha Tiwari, an MCA graduate from GNIOT with an interest in
+              software development and modern technology. I enjoy understanding
+              problems, learning new tools and creating solutions that are simple
+              and effective.
+            </p>
+            <p>
+              This portfolio is a small introduction to my education, skills and
+              projects. Replace the sample content below with your real
+              experience, achievements and project links.
+            </p>
+
+            <div class="skills">
+              <span class="skill">HTML</span>
+              <span class="skill">CSS</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">Python</span>
+              <span class="skill">Java</span>
+              <span class="skill">SQL</span>
+              <span class="skill">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected work.</h2>
+          <p>A clean space to showcase your best academic, personal or professional projects.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div>
+              <span class="project-number">01 / PROJECT</span>
+              <h3>Project One</h3>
+              <p>Describe your main project, the problem it solves and the technologies you used.</p>
+            </div>
+            <a href="#" onclick="return false;">View project ↗</a>
+          </article>
+
+          <article class="project">
+            <div>
+              <span class="project-number">02 / PROJECT</span>
+              <h3>Project Two</h3>
+              <p>Add another strong project with a short, result-focused description.</p>
+            </div>
+            <a href="#" onclick="return false;">View project ↗</a>
+          </article>
+
+          <article class="project">
+            <div>
+              <span class="project-number">03 / PROJECT</span>
+              <h3>Project Three</h3>
+              <p>Showcase an academic project, internship work or personal creation here.</p>
+            </div>
+            <a href="#" onclick="return false;">View project ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head">
+          <h2>Education.</h2>
+          <p>A simple timeline for your academic journey.</p>
+        </div>
+
+        <div class="card">
+          <div class="education">
+            <div class="education-item">
+              <small>POSTGRADUATE</small>
+              <h3>Master of Computer Applications (MCA)</h3>
+              <p>GNIOT — Greater Noida</p>
+            </div>
+
+            <div class="education-item">
+              <small>UNDERGRADUATE</small>
+              <h3>Bachelor's Degree</h3>
+              <p>Add your bachelor's degree, college and graduation year here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <h2>Let's build something meaningful.</h2>
+            <p>Have an opportunity, project or idea? I'd love to hear from you.</p>
+          </div>
+          <a class="btn" href="mailto:your.email@example.com">Email Me →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <span>© 2026 Shradhha Tiwari. All rights reserved.</span>
+    <span>Designed & built with HTML + CSS.</span>
+  </footer>
+
+</body>
+</html>
